@@ -7,12 +7,12 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push',  'us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/hello-world-python:$SHORT_SHA']
 
-  - name: google/cloud-sdk
-    args: ['gcloud', 'run', 'deploy', 'hello-world-python', 
-           '--image=us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/hello-world-python:$SHORT_SHA', 
-           '--region', 'us-central1', '--platform', 'managed', 
-           '--allow-unauthenticated']
-
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['compute', 'instances', 'create-with-container', 'hello-world-vm',
+        '--zone=us-central1-a',
+        '--container-image=us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/hello-world-python:$SHORT_SHA',
+        '--container-restart-policy=always']
+        
 options:
   logging: CLOUD_LOGGING_ONLY
   
