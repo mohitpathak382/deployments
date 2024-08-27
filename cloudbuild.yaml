@@ -7,11 +7,11 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push',  'us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/hello-world-python:$SHORT_SHA']
 
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['compute', 'instances', 'create-with-container', 'hello-world-vm',
-        '--zone=us-central1-a',
-        '--container-image=us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/hello-world-python:$SHORT_SHA',
-        '--container-restart-policy=always']
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['compute', 'instances', 'create-with-container', 'hello-world-vm',
+          '--zone=us-central1-a',
+          '--container-image=us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/hello-world-python:$SHORT_SHA',
+          '--container-restart-policy=always']
         
 options:
   logging: CLOUD_LOGGING_ONLY
