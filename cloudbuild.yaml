@@ -12,9 +12,14 @@ steps:
           '--zone=us-central1-a',
           '--container-image=us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/hello-world-python:$SHORT_SHA',
           '--container-restart-policy=always']
-        
+          
+  - name: 'bash'
+    args: ['echo', 'I am running in a private pool!']   
+    
 options:
   logging: CLOUD_LOGGING_ONLY
+  pool:
+   name: 'projects/PRIVATEPOOL_PROJECT_ID/locations/REGION/workerPools/PRIVATEPOOL_ID'
   
 images:
   - us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/hello-world-python:$SHORT_SHA
