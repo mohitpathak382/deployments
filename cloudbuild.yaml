@@ -19,7 +19,7 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
   pool:
-   name: 'projects/PRIVATEPOOL_PROJECT_ID/locations/REGION/workerPools/PRIVATEPOOL_ID'
+    name: 'projects/PRIVATEPOOL_PROJECT_ID/locations/REGION/workerPools/PRIVATEPOOL_ID'
   
 images:
   - us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/hello-world-python:$SHORT_SHA
